@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { sample } from "lodash";
 import { buildDeck, TDeck } from "../utils/cards";
 
@@ -13,7 +13,7 @@ const CardScreen = () => {
     const [deck, setDeck] = useState<TDeck>();
     const [currentCardIndex, setCurrentCardIndex] = useState(-1);
 
-    const drawCard = () => {
+    const drawCard = useCallback(() => {
         console.log({ deck });
         let card = "";
         if (currentCardIndex === 13) {
@@ -55,7 +55,7 @@ const CardScreen = () => {
         }
         setCards((oldCards) => [...oldCards, card]);
         setCurrentCardIndex((oldIndex) => oldIndex + 1);
-    };
+    }, [currentCardIndex, deck]);
 
     const previousCard = () => {
         if (currentCardIndex > 0) {
@@ -80,7 +80,7 @@ const CardScreen = () => {
         if (currentCardIndex === -1) {
             drawCard();
         }
-    }, [deck]);
+    }, [deck, currentCardIndex, drawCard]);
 
     const getLevelTitle = () => {
         if (currentCardIndex > CARD_BREAKPOINTS.MAX_LEVEL_3_CARDS) {
@@ -100,7 +100,7 @@ const CardScreen = () => {
                 {getLevelTitle()}
             </div>
             <div className="text-red-500 text-xl mb-8 font-semibold">
-                Carta {currentCardIndex + 1} de {cards.length}
+                Carta {currentCardIndex + 1} de 33
             </div>
             <div className="bg-red-500 text-white w-full px-4 py-2 rounded-md text-2xl flex justify-center items-center flex-col text-center h-64">
                 <span>
