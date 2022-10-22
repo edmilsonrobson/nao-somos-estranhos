@@ -4,14 +4,12 @@ import TitleScreen from "./TitleScreen";
 
 const MainGame = () => {
     const [isTitle, setIsTitle] = useState(true);
-    const [datingExpansionEnabled, setDatingExpansionEnabled] = useState(false);
 
     if (isTitle) {
         return (
             <TitleScreen
                 onStartClick={(withDatingExpansion) => {
                     setIsTitle(false);
-                    setDatingExpansionEnabled(withDatingExpansion);
                 }}
             />
         );
