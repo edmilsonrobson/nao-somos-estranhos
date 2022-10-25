@@ -16,13 +16,7 @@ const CardScreen = () => {
     const drawCard = useCallback(() => {
         console.log({ deck });
         let card = "";
-        if (currentCardIndex === 13) {
-            card =
-                "Quão emocionalmente disponível você se sente atualmente? Explique.";
-        } else if (currentCardIndex === 11) {
-            card =
-                "Complete a frase: 'Eu sei que tou realmente gostando de alguém quando _____'";
-        } else if (currentCardIndex >= CARD_BREAKPOINTS.MAX_LEVEL_3_CARDS) {
+        if (currentCardIndex >= CARD_BREAKPOINTS.MAX_LEVEL_3_CARDS) {
             card =
                 "Tirem uma selfie. Depois, cada jogador escreve uma mensagem para o outro em papel. Dobre-as e as entregue um para o outro. Abram para ler apenas quando vocês se despedirem.";
         } else if (currentCardIndex > CARD_BREAKPOINTS.MAX_LEVEL_2_CARDS) {
